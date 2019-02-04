@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crear Estudiantes</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/animate.css">
+</head>
+<body>
+    <div class="container">
+        <% const estaCreando = typeof estudiante === "undefined"%>
+
+        <h1><%= estaCreando ? 'Crear': 'Actualizar'%> estudiante</h1>
+        <p><%= estaCreando ? 'Cree': 'Actualice'%> un estudiante</p>
+
+        <form action="/estudiante/<%= estaCreando ? 'crear' : 'actualizar' %>
+                -estudiante/<%= estaCreando ? '': estudiante.estudianteId%>" method="POST">
+            <div>
+                <label for="nombres">Nombres</label>
+                <input id="nombres"
+                       name="nombres"
+                       type="text"
+                       value="<%= estaCreando ? '' : estudiante.nombres%>"
+                >
+            </div>
+
+            <div>
+                <label for="apellidos">Apellidos</label>
+                <input id="apellidos"
+                       name="apellidos"
+                       type="text"
+                       value="<%= estaCreando ? '' : estudiante.apellidos%>"
+                >
+            </div>
+
+            <div>
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input id="nombres"
+                       name="nombres"
+                       type="text"
+                       value="<%= estaCreando ? '' : estudiante.fechaNacimiento%>"
+                >
+            </div>
+
+            <div>
+                <label for="semestreActual">Semestre Actual</label>
+                <input id="semestreActual"
+                       name="semestreActual"
+                       type="number"
+                       value="<%= estaCreando ? '' : estudiante.semestreActual%>"
+                >
+            </div>
+
+            <button><%= estaCreando ? 'Crear': 'Actualizar'%> estudiante</button>
+        </form>
+
+        <a href="/estudiante/estudiantes">
+            <button>Regresar</button>
+        </a>
+
+    </div>
+</body>
+</html>

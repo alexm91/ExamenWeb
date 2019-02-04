@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestion de Estudiantes</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/animate.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <% const existeMensaje = typeof mensaje !== "undefined"%>
+        <% if (existeMensaje) {%>
+            <div class="alert alert-primary" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+            </div>
+        <% }%>
+
+        <h1>Gestion de Estudiantes</h1>
+        <p>Busque, cree actualice y elimine estudiantes. Puede buscar estudiantes por nombres y apellidos.</p>
+
+        <form method="get" action="/estudiante/estudiantes">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label for="busqueda">Busqueda</label>
+                        <input id="busqueda" type="text" name="busqueda" class="form-control">
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <button class=" btn btn-outline-success btn-block" style="margin-top: 31px;">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-9">
+
+            </div>
+            <div class="col-sm-3">
+                <a href="/estudiante/crear-estudiante" style="text-decoration: none">
+                    <button class=" btn btn-outline-success btn-block">
+                        Crear estudiante
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <h2>Lista de Estudiantes</h2>
+        <p>Listado de los estudiantes, actualice o elimine estudiantes</p>
+
+        <table class="table table-hover animated">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Semestre Actual</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% arregloEstudiantes.forEach( (estudiante)=> {%>
+                <tr>
+                    <td><%= estudiante.estudianteId%></td>
+                    <td><%= estudiante.nombres%></td>
+                    <td><%= estudiante.apellidos%></td>
+                    <td><%= estudiante.fechaNacimiento%></td>
+                    <td><%= estudiante.semestreActual%></td>
+                    <td>
+                        <form action="/estudiante/eliminar/<%= estudiante.estudianteId %>" method="POST">
+                            <button class="btn btn-outline-danger btn-block" type="submit"
+                                    style="margin-top: 10px; margin-bottom: 10px">
+                                Eliminar
+                            </button>
+                        </form>
+                        <a href="/estudiante/actualizar-estudiante/<%= estudiante.estudianteId%>"
+                           style="text-decoration: none">
+                            <button class="btn-block btn btn-outline-info"
+                                    style="margin-top: 10px; margin-bottom: 10px">
+                                Actualizar
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+
+        <script src="/js/jquery.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/bootstrap/js/bootstrap.js"></script>
+    </div>
+</body>
+</html>

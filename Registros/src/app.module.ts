@@ -5,11 +5,11 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import { EstudianteEntity } from './estudiante/estudiante.entity';
 import { MateriaEntity } from './materia/materia.entity';
 import { EventoEntity } from './evento/evento.entity';
-import { EventoMateriaEntity } from './Evento-Materia/evento-materia.entity';
+import { EventoMateriaEntity } from './evento-materia/evento-materia.entity';
 import { EstudianteModule } from './estudiante/estudiante.module';
 import { MateriaModule } from './materia/materia.module';
 import { EventoModule } from './evento/evento.module';
-import { EventoMateriaModule } from './Evento-Materia/evento-materia.module';
+import { EventoMateriaModule } from './evento-materia/evento-materia.module';
 
 @Module({
   imports: [

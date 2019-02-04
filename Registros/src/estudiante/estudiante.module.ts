@@ -1,6 +1,7 @@
 import {Module} from '@nestjs/common';
 import {EstudianteEntity} from './estudiante.entity';
-
+import { EstudianteCotroller } from './estudiante.controller';
+import { EstudianteService } from './estudiante.service';
 import {TypeOrmModule} from '@nestjs/typeorm';
 
 @Module(
@@ -13,13 +14,13 @@ import {TypeOrmModule} from '@nestjs/typeorm';
           ])
     ],
     controllers: [
-
+      EstudianteCotroller
     ],
     providers: [
-
+      EstudianteService
     ],
     exports: [
-
+      EstudianteService
     ]
   }
 )

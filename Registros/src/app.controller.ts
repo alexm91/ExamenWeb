@@ -1,18 +1,5 @@
-import {
-    Headers,
-    Get,
-    Controller,
-    HttpCode,
-    InternalServerErrorException,
-    Post,
-    Query,
-    Param,
-    Body,
-    Head, UnauthorizedException, Req, Res, Session
-} from '@nestjs/common';
+import { Controller} from '@nestjs/common';
 import { AppService } from './app.service';
-import { Observable, of } from 'rxjs';
-import {Request, Response} from 'express';
 
 @Controller()
 export class AppController {
@@ -21,3 +8,31 @@ export class AppController {
   }
 }
 
+export interface Estudiante {
+    estudianteId?: number;
+    nombres: string;
+    apellidos: string;
+    fechaNacimiento: string;
+    semestreActual: number;
+}
+
+export interface Materia {
+    nombreM?: number;
+    codigo: string;
+    descripcion: string;
+    activo: boolean;
+    fechaCreacion: string;
+    numeroHorasPorSemana: number;
+}
+
+export interface Evento {
+    eventoId?: number;
+    nombreE: number;
+    fecha: string;
+    latitud: number;
+    longitud: number;
+}
+
+export interface EventoMateria{
+    id: number;
+}

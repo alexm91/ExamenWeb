@@ -1,5 +1,5 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
-import { EventoMateriaEntity } from '../Evento-Materia/evento-materia.entity';
+import { EventoMateriaEntity } from '../evento-materia/evento-materia.entity';
 
 @Entity('evento')
 export class EventoEntity {
