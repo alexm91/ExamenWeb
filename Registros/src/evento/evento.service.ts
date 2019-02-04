@@ -12,18 +12,18 @@ export class EventoService {
     private readonly _eventoRepository : Repository<EventoEntity>
   ){}
 
-  buscar(parametrosBusqueda?: FindManyOptions<EventoEntity>)
+  buscarEvento(parametrosBusqueda?: FindManyOptions<EventoEntity>)
     : Promise<EventoEntity[]> {
     return this._eventoRepository.find(parametrosBusqueda);
   }
 
-  crear(evento: Evento) : Promise<EventoEntity> {
+  crearEvento(evento: Evento) : Promise<EventoEntity> {
     const eventoEntity : EventoEntity = this._eventoRepository
       .create(evento);
     return this._eventoRepository.save(eventoEntity);
   }
 
-  eliminar(eventoId: number) : Promise<EventoEntity> {
+  eliminarEvento(eventoId: number) : Promise<EventoEntity> {
     const eventoEliminar : EventoEntity = this._eventoRepository
       .create({
         eventoId: eventoId
@@ -31,13 +31,13 @@ export class EventoService {
     return this._eventoRepository.remove(eventoEliminar)
   }
 
-  actualizar(nuevoEvento: Evento) : Promise<EventoEntity> {
+  actualizarEvento(nuevoEvento: Evento) : Promise<EventoEntity> {
     const eventoEntity: EventoEntity = this._eventoRepository
       .create(nuevoEvento);
     return this._eventoRepository.save(eventoEntity);
   }
 
-  buscarPorId(eventoId: number) : Promise<EventoEntity> {
+  buscarPorIdEvento(eventoId: number) : Promise<EventoEntity> {
     return this._eventoRepository.findOne(eventoId);
   }
 

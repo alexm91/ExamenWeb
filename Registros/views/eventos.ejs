@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestion de Eventos</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/animate.css">
+</head>
+<body>
+    <div class="container">
+        <% const existeMensaje = typeof mensaje !== "undefined"%>
+        <% if (existeMensaje) {%>
+            <div class="alert alert-primary" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+            </div>
+        <% }%>
+
+        <h1>Gestion de Eventos</h1>
+        <p>Busque, cree actualice y elimine eventos. Puede buscar eventos por nombreE.</p>
+
+        <form method="get" action="/evento/eventos">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label for="busqueda">Busqueda</label>
+                        <input id="busqueda" type="text" name="busqueda" class="form-control">
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <button class=" btn btn-outline-success btn-block" style="margin-top: 31px;">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-9">
+
+            </div>
+            <div class="col-sm-3">
+                <a href="/evento/crear-evento" style="text-decoration: none">
+                    <button class=" btn btn-outline-success btn-block">
+                        Crear evento
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <h2>Lista de Eventos</h2>
+        <p>Listado de los eventos, actualice o elimine eventos</p>
+        <table class="table table-hover animated">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre Evento</th>
+                    <th>Fecha</th>
+                    <th>Ubicacion</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% arregloEventos.forEach( (evento)=> {%>
+                <tr>
+                    <td><%= evento.eventoId%></td>
+                    <td><%= evento.nombreE%></td>
+                    <td><%= evento.fechaE%></td>
+                    <td>
+                        <button class="btn-block btn btn-outline-info"
+                                style="margin-top: 10px; margin-bottom: 10px">
+                            Ver
+                        </button>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

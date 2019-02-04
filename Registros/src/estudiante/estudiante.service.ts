@@ -13,18 +13,18 @@ export class EstudianteService {
   ){
   }
 
-  buscar(parametrosBusqueda?: FindManyOptions<EstudianteEntity>)
+  buscarEstudiante(parametrosBusqueda?: FindManyOptions<EstudianteEntity>)
     : Promise<EstudianteEntity[]>{
     return this._estudianteRepository.find(parametrosBusqueda);
   }
 
-  crear(estudiante: Estudiante) : Promise<EstudianteEntity>{
+  crearEstudiante(estudiante: Estudiante) : Promise<EstudianteEntity>{
     const estudianteEntity : EstudianteEntity = this._estudianteRepository
       .create(estudiante);
     return this._estudianteRepository.save(estudianteEntity);
   }
 
-  eliminar(estudianteId: number): Promise<EstudianteEntity> {
+  eliminarEstudiante(estudianteId: number): Promise<EstudianteEntity> {
     const estudianteEliminar : EstudianteEntity = this._estudianteRepository
       .create({
         estudianteId: estudianteId
@@ -32,13 +32,13 @@ export class EstudianteService {
     return this._estudianteRepository.remove(estudianteEliminar);
   }
 
-  actualizar(nuevoEstudiante: Estudiante) : Promise<EstudianteEntity> {
+  actualizarEstudiante(nuevoEstudiante: Estudiante) : Promise<EstudianteEntity> {
     const estudianteEntity : EstudianteEntity = this._estudianteRepository
       .create(nuevoEstudiante);
     return this._estudianteRepository.save(estudianteEntity);
   }
 
-  buscarPorId(estudianteId: number): Promise<EstudianteEntity> {
+  buscarPorIdEstudiante(estudianteId: number): Promise<EstudianteEntity> {
     return this._estudianteRepository.findOne(estudianteId);
   }
 

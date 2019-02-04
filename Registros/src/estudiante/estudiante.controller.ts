@@ -51,9 +51,9 @@ export class EstudianteCotroller {
           },
         ]
       };
-      estudiantes = await this._estudianteService.buscar(consulta);
+      estudiantes = await this._estudianteService.buscarEstudiante(consulta);
     } else {
-      estudiantes = await this._estudianteService.buscar();
+      estudiantes = await this._estudianteService.buscarEstudiante();
     }
     response.render(
       'estudiantes',
@@ -67,12 +67,12 @@ export class EstudianteCotroller {
   }
 
   @Post('eliminar/:estudianteId')
-  async elminar(
+  async eliminar(
     @Res() response,
     @Param('estudianteId') estudianteId: string,
   ) {
-    const estudiante = await this._estudianteService.buscarPorId(+estudianteId);
-    await this._estudianteService.eliminar(Number(estudianteId));
+    const estudiante = await this._estudianteService.buscarPorIdEstudiante(+estudianteId);
+    await this._estudianteService.eliminarEstudiante(Number(estudianteId));
     const parametrosConsulta = `?accion=borrar%estudiante=${
       estudiante.nombres
     }`;
@@ -94,6 +94,7 @@ export class EstudianteCotroller {
     @Body() estudiante: Estudiante
   ) {
     const objetoValidacionEstudiante = new CreateEstudianteDto();
+
     objetoValidacionEstudiante.nombres = estudiante.nombres;
     objetoValidacionEstudiante.apellidos = estudiante.apellidos;
     objetoValidacionEstudiante.semestreActual = estudiante.semestreActual;
@@ -107,8 +108,8 @@ export class EstudianteCotroller {
       console.error(errores);
       throw new BadRequestException({mensaje: 'Error de validacion'})
     } else {
-      const respuesta = await this._estudianteService.crear(estudiante);
-      const parametrosConsulta = `?accion=crear%estudiante=${estudiante.nombres}`
+      const respuesta = await this._estudianteService.crearEstudiante(estudiante);
+      const parametrosConsulta = `?accion=crear%estudiante=${estudiante.nombres}`;
 
       response.redirect(
         '/estudiante/estudiantes' + parametrosConsulta
@@ -122,7 +123,7 @@ export class EstudianteCotroller {
     @Param('estudianteId') estudianteId: string,
   ) {
     const estudianteEncontrado = await this._estudianteService
-      .buscarPorId(+estudianteId);
+      .buscarPorIdEstudiante(+estudianteId);
 
     response.render(
       'crear-estudiante',
@@ -139,7 +140,7 @@ export class EstudianteCotroller {
     @Body() estudiante: Estudiante
   ) {
     estudiante.estudianteId = +estudianteId;
-    await this._estudianteService.actualizar(estudiante);
+    await this._estudianteService.actualizarEstudiante(estudiante);
 
     const parametrosConsulta = `?accion=actualizar&estudiante=${estudiante.nombres}`
 

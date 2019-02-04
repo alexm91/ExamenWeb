@@ -10,21 +10,21 @@ export class EventoEntity {
   @Index()
   @Column({
     name: 'Evento',
-    type: 'int',
+    type: 'varchar',
   })
-  nombreE: number;
+  nombreE: string;
 
   @Column({
     name: 'Fecha',
     type: 'date',
   })
-  fecha: string;
+  fechaE: string;
 
   @Column({
     name: 'Latitud',
     type: 'decimal',
     precision: 9,
-    scale: 2,
+    scale: 6,
   })
   latitud: number;
 
@@ -32,7 +32,7 @@ export class EventoEntity {
     name: 'Longitud',
     type: 'decimal',
     precision: 9,
-    scale: 2,
+    scale: 6,
   })
   longitud: number;
 
