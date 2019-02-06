@@ -6,7 +6,14 @@ import { EventoMateriaEntity } from '../evento-materia/evento-materia.entity';
 export class MateriaEntity {
 
   @PrimaryGeneratedColumn()
-  nombreM: number;
+  materiaId: number;
+
+  @Column({
+    name: 'Materia',
+    type: 'varchar',
+    length: 25
+  })
+  nombreMateria: string;
 
   @Column({
     name: 'Codigo',

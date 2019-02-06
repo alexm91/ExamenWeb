@@ -12,32 +12,32 @@ export class MateriaService {
     private readonly _materiaRepository: Repository<MateriaEntity>,
   ){}
 
-  buscar(parametrosBusqueda?: FindManyOptions<MateriaEntity>)
+  buscarMateria(parametrosBusqueda?: FindManyOptions<MateriaEntity>)
     : Promise<MateriaEntity[]>{
     return this._materiaRepository.find(parametrosBusqueda);
   }
 
-  crear(materia: Materia) : Promise<MateriaEntity>{
+  crearMateria(materia: Materia) : Promise<MateriaEntity>{
     const materiaEntity : MateriaEntity = this._materiaRepository
       .create(materia);
     return this._materiaRepository.save(materiaEntity);
   }
 
-  eliminar(materiaId: number) : Promise<MateriaEntity> {
+  eliminarMateria(materiaId: number) : Promise<MateriaEntity> {
     const materiaEliminar : MateriaEntity = this._materiaRepository
       .create({
-        nombreM: materiaId
+        materiaId: materiaId
       });
     return this._materiaRepository.remove(materiaEliminar);
   }
 
-  actualizar(nuevaMateria: Materia) : Promise<MateriaEntity> {
+  actualizarMateria(nuevaMateria: Materia) : Promise<MateriaEntity> {
     const materiaEntity: MateriaEntity = this._materiaRepository
       .create(nuevaMateria);
     return this._materiaRepository.save(materiaEntity);
   }
 
-  buscarPorId(materiaId: number) : Promise<MateriaEntity> {
+  buscarPorIdMateria(materiaId: number) : Promise<MateriaEntity> {
     return this._materiaRepository.findOne(materiaId)
   }
 

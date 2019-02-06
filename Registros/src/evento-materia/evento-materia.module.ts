@@ -1,7 +1,8 @@
 import {Module} from '@nestjs/common';
 import {EventoMateriaEntity} from './evento-materia.entity';
-
+import { EventoMateriaService } from './evento-materia.service';
 import {TypeOrmModule} from '@nestjs/typeorm'
+import { EventoMateriaController } from './evento-materia.controller';
 
 @Module(
   {
@@ -13,13 +14,13 @@ import {TypeOrmModule} from '@nestjs/typeorm'
           ])
     ],
     controllers: [
-
+      EventoMateriaController
     ],
     providers: [
-
+      EventoMateriaService
     ],
     exports: [
-
+      EventoMateriaService
     ]
   }
 )

@@ -130,7 +130,7 @@ export class EstudianteCotroller {
       {
         estudiante: estudianteEncontrado
       }
-    )
+    );
   }
 
   @Post('actualizar-estudiante/:estudianteId')
@@ -145,7 +145,7 @@ export class EstudianteCotroller {
     const parametrosConsulta = `?accion=actualizar&estudiante=${estudiante.nombres}`
 
     response.redirect(
-      'estudiante/estuadiantes' + parametrosConsulta
+      '/estudiante/estudiantes' + parametrosConsulta
     );
   }
 }

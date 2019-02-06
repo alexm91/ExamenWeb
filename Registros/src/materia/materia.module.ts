@@ -2,6 +2,8 @@ import {Module} from '@nestjs/common';
 import {MateriaEntity} from './materia.entity';
 
 import {TypeOrmModule} from '@nestjs/typeorm';
+import { MateriaService } from './materia.service';
+import { MateriaController } from './materia.controller';
 
 @Module(
   {
@@ -13,13 +15,13 @@ import {TypeOrmModule} from '@nestjs/typeorm';
           ])
     ],
     providers: [
-
+      MateriaService
     ],
     controllers: [
-
+      MateriaController
     ],
     exports: [
-
+      MateriaService
     ]
   }
 )

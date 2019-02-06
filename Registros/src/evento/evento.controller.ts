@@ -71,7 +71,7 @@ export class EventoController {
     const evento = await this._eventoService.buscarPorIdEvento(+eventoId);
     await this._eventoService.eliminarEvento(Number(eventoId));
     const parametrosConsulta = `?accion=borrar%evento=${
-      evento.nombreE
+      evento.nombreEvento
       }`;
     response.redirect('/evento/eventos' + parametrosConsulta)
   }
@@ -102,7 +102,7 @@ export class EventoController {
       throw new BadRequestException({mensaje: 'Error de validacion'})
     } else {
       const respuesta = await this._eventoService.crearEvento(evento);
-      const parametrosConsulta = `?accion=crear&evento=${evento.nombreE}`;
+      const parametrosConsulta = `?accion=crear&evento=${evento.nombreEvento}`;
 
       response.redirect(
         '/evento/eventos' + parametrosConsulta
@@ -135,7 +135,7 @@ export class EventoController {
     evento.eventoId = +eventoId;
     await this._eventoService.actualizarEvento(evento);
 
-    const parametrosConsulta = `?accion=actualizar&estudiante=${evento.nombreE}`
+    const parametrosConsulta = `?accion=actualizar&estudiante=${evento.nombreEvento}`
 
     response.redirect(
       'evento/eventos' + parametrosConsulta

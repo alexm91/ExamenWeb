@@ -17,7 +17,7 @@ import { EventoMateriaModule } from './evento-materia/evento-materia.module';
       {
         type: 'mysql',
         host: 'localhost',
-        port: 32769,
+        port: 32771,
         database: 'examen',
         username: 'web',
         password: '12345',

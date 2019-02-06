@@ -12,13 +12,13 @@ export class EventoEntity {
     name: 'Evento',
     type: 'varchar',
   })
-  nombreE: string;
+  nombreEvento: string;
 
   @Column({
     name: 'Fecha',
     type: 'date',
   })
-  fechaE: string;
+  fechaEvento: string;
 
   @Column({
     name: 'Latitud',

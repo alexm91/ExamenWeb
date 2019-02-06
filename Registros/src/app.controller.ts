@@ -1,4 +1,4 @@
-import { Controller} from '@nestjs/common';
+import { Controller, Get, HttpCode, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -6,6 +6,17 @@ export class AppController {
   constructor(private readonly _appService: AppService) {
 
   }
+
+  @Get('inicio')
+  @HttpCode(200)
+  async ejecutar(
+    @Res() response,
+  ){
+      response.render(
+        'inicio'
+      );
+  }
+
 }
 
 export interface Estudiante {
@@ -17,22 +28,26 @@ export interface Estudiante {
 }
 
 export interface Materia {
-    nombreM?: number;
+    materiaId?: number
+    nombreMateria: string;
     codigo: string;
     descripcion: string;
     activo: boolean;
     fechaCreacion: string;
     numeroHorasPorSemana: number;
+    estudianteIdFK?: number
 }
 
 export interface Evento {
     eventoId?: number;
-    nombreE: number;
-    fecha: string;
+    nombreEvento: number;
+    fechaEvento: string;
     latitud: number;
     longitud: number;
 }
 
 export interface EventoMateria{
     id: number;
+    eventoIdFK?: number;
+    materiaIdFK?: number;
 }

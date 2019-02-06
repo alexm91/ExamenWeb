@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crear Materia</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/animate.css">
+</head>
+<body>
+    <div class="container">
+        <% const estaCreando = typeof materia === "undefined"%>
+        <% const estaCreando1 = typeof estudiante === "undefined"%>
+
+        <h1><%= estaCreando ? 'Crear': 'Actualizar'%> materia</h1>
+        <p><%= estaCreando ? 'Cree': 'Actualice'%> una materia</p>
+
+        <form action="/materia/<%= estaCreando ? 'crear' : 'actualizar'%>
+                        -materia/<%= estaCreando ? '': materia.materiaId%>" method="post">
+            <div>
+                <label for="nombreMateria">Materia</label>
+                <input id="nombreMateria"
+                       name="nombreMateria"
+                       type="text"
+                       value="<%= estaCreando ? '' : materia.nombreMateria%>"
+                >
+            </div>
+
+            <div>
+                <label for="codigo">Codigo</label>
+                <input id="codigo"
+                       name="codigo"
+                       type="text"
+                       value="<%= estaCreando ? '' : materia.codigo%>"
+                >
+            </div>
+
+            <div>
+                <label for="descripcion">Descripcion</label>
+                <input id="descripcion"
+                       name="descripcion"
+                       type="text"
+                       value="<%= estaCreando ? '' : materia.descripcion%>"
+                >
+            </div>
+
+            <div>
+                <label for="activo">Activo</label>
+                <input id="activo"
+                       name="activo"
+                       type="text"
+                       value="<%= estaCreando ? '' : materia.activo%>"
+                >
+            </div>
+
+            <div>
+                <label for="fechaCreacion">Fecha de Creacion</label>
+                <input id="fechaCreacion"
+                       name="fechaCreacion"
+                       type="text"
+                       value="<%= estaCreando ? '' : materia.fechaCreacion%>"
+                >
+            </div>
+
+            <div>
+                <label for="numeroHorasPorSemana">Horas por Semana</label>
+                <input id="numeroHorasPorSemana"
+                       name="numeroHorasPorSemana"
+                       type="text"
+                       value="<%= estaCreando ? '' : materia.numeroHorasPorSemana%>"
+                >
+            </div>
+
+            <button type="submit"><%= estaCreando ? 'Crear': 'Actualizar'%> materia</button>
+
+        </form>
+        <a href="/estudiante/estudiantes">
+            <button>Regresar</button>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestion de Materias</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/animate.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <% const existeMensaje = typeof mensaje !== "undefined"%>
+        <% if (existeMensaje) {%>
+            <div class="alert alert-primary" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+            </div>
+        <% }%>
+
+        <h1>Gestion de Materias</h1>
+        <p>Busque, cree actualice y elimine materias. Puede buscar materias por nombre o codigo.</p>
+
+        <form method="get" action="/materia/materias">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label for="busqueda">Busqueda</label>
+                        <input id="busqueda" type="text" name="busqueda" class="form-control">
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <button class=" btn btn-outline-success btn-block" style="margin-top: 31px;">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-9">
+
+            </div>
+            <div class="col-sm-3">
+                <a href="/materia/crear-materia" style="text-decoration: none">
+                    <button class=" btn btn-outline-success btn-block">
+                        Crear materia
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <h2>Lista de Materias</h2>
+        <p>Listado de las materias, actualice o elimine materias</p>
+
+        <table class="table table-hover animated">
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Codigo</th>
+                    <th>Descripcion</th>
+                    <th>Activo</th>
+                    <th>Fecha de Creacion</th>
+                    <th>Horas por Semana</th>
+                    <th>Estudiante ID</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% arregloMaterias.forEach((materia) => {%>
+                <tr>
+                    <td><%= materia.nombreMateria%></td>
+                    <td><%= materia.codigo%></td>
+                    <td><%= materia.descripcion%></td>
+                    <td><%= materia.activo%></td>
+                    <td><%= materia.fechaCreacion%></td>
+                    <td><%= materia.numeroHorasPorSemana%></td>
+                    <td><%= materia.estudianteId%></td>
+                    <td></td>
+                    <td>
+                        <form action="/materia/eliminar/<%= materia.materiaId %>" method="POST">
+                            <button class="btn btn-outline-danger btn-block" type="submit"
+                                    style="margin-top: 10px; margin-bottom: 10px">
+                                Eliminar
+                            </button>
+                        </form>
+                        <a href="/materia/actualizar-materia/<%= materia.materiaId%>"
+                           style="text-decoration: none">
+                            <button class="btn-block btn btn-outline-info"
+                                    style="margin-top: 10px; margin-bottom: 10px">
+                                Actualizar
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <script src="/js/jquery.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/bootstrap/js/bootstrap.js"></script>
+    </div>
+</body>
+</html>

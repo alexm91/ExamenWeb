@@ -5,6 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px;  /* The height is 400 pixels */
+            width: 100%;  /* The width is the width of the web page */
+        }
+    </style>
     <title>Gestion de Eventos</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/css/animate.css">
@@ -68,8 +75,8 @@
             <% arregloEventos.forEach( (evento)=> {%>
                 <tr>
                     <td><%= evento.eventoId%></td>
-                    <td><%= evento.nombreE%></td>
-                    <td><%= evento.fechaE%></td>
+                    <td><%= evento.nombreEvento%></td>
+                    <td><%= evento.fechaEvento%></td>
                     <td>
                         <button class="btn-block btn btn-outline-info"
                                 style="margin-top: 10px; margin-bottom: 10px">
@@ -80,6 +87,21 @@
             <% }) %>
             </tbody>
         </table>
+        <div id="map"></div>
+
+        <script>
+          function initMap() {
+            var epn = {lat: -0.210334, lng: -78.487999};
+            var map = new google.maps.Map(
+              document.getElementById('map'), {zoom: 4, center: epn});
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({position: epn, map: map});
+          }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxnTF_SlMitUfJJb_P6P8ltuLDBZShlIM&callback=initMap">
+        </script>
     </div>
+
 </body>
 </html>
