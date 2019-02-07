@@ -80,8 +80,7 @@
                     <td><%= materia.activo%></td>
                     <td><%= materia.fechaCreacion%></td>
                     <td><%= materia.numeroHorasPorSemana%></td>
-                    <td><%= materia.estudianteId%></td>
-                    <td></td>
+                    <td><%= materia.estudianteIdFK%></td>
                     <td>
                         <form action="/materia/eliminar/<%= materia.materiaId %>" method="POST">
                             <button class="btn btn-outline-danger btn-block" type="submit"
@@ -104,6 +103,15 @@
         <script src="/js/jquery.js"></script>
         <script src="/js/popper.js"></script>
         <script src="/bootstrap/js/bootstrap.js"></script>
+
+        <script>
+
+          this.createQueryBuilder('user')
+            .leftJoinAndSelect('user.activities', 'activities')
+            .where('user.id = :id', { id })
+            .getMany();
+        </script>
+
     </div>
 </body>
 </html>

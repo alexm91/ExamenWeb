@@ -16,8 +16,7 @@
         <h1><%= estaCreando ? 'Crear': 'Actualizar'%> estudiante</h1>
         <p><%= estaCreando ? 'Cree': 'Actualice'%> un estudiante</p>
 
-        <form action="/estudiante/<%= estaCreando ? 'crear' : 'actualizar' %>
-                -estudiante/<%= estaCreando ? '': estudiante.estudianteId%>" method="POST">
+        <form action="/estudiante/<%= estaCreando ? 'crear' : 'actualizar' %>-estudiante/<%= estaCreando ? '': estudiante.estudianteId%>" method="POST">
             <div>
                 <label for="nombres">Nombres</label>
                 <input id="nombres"
@@ -38,9 +37,9 @@
 
             <div>
                 <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                <input id="nombres"
-                       name="nombres"
-                       type="text"
+                <input id="fechaNacimiento"
+                       name="fechaNacimiento"
+                       type="string"
                        value="<%= estaCreando ? '' : estudiante.fechaNacimiento%>"
                 >
             </div>
@@ -54,7 +53,21 @@
                 >
             </div>
 
-            <button type="submit"><%= estaCreando ? 'Crear': 'Actualizar'%> estudiante</button>
+            <label for="graduado"><b>Graduado</b></label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="graduado" id="graduado" value="1" checked>
+                <label class="form-check-label" for="graduado">
+                    Si
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="graduado" id="graduado" value="0">
+                <label class="form-check-label" for="graduado">
+                    No
+                </label>
+            </div>
+
+            <button><%= estaCreando ? 'Crear': 'Actualizar'%> estudiante</button>
         </form>
 
         <a href="/estudiante/estudiantes">

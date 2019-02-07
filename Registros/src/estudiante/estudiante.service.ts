@@ -19,7 +19,7 @@ export class EstudianteService {
   }
 
   crearEstudiante(estudiante: Estudiante) : Promise<EstudianteEntity>{
-    const estudianteEntity : EstudianteEntity = this._estudianteRepository
+    const estudianteEntity: EstudianteEntity  = this._estudianteRepository
       .create(estudiante);
     return this._estudianteRepository.save(estudianteEntity);
   }

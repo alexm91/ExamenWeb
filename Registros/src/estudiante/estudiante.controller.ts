@@ -97,7 +97,8 @@ export class EstudianteCotroller {
 
     objetoValidacionEstudiante.nombres = estudiante.nombres;
     objetoValidacionEstudiante.apellidos = estudiante.apellidos;
-    objetoValidacionEstudiante.semestreActual = estudiante.semestreActual;
+    objetoValidacionEstudiante.semestreActual = +estudiante.semestreActual;
+    objetoValidacionEstudiante.fechaNacimiento = estudiante.fechaNacimiento;
 
     const errores: ValidationError[] = await validate(
       objetoValidacionEstudiante);
@@ -115,6 +116,7 @@ export class EstudianteCotroller {
         '/estudiante/estudiantes' + parametrosConsulta
       );
     }
+
   }
 
   @Get('actualizar-estudiante/:estudianteId')

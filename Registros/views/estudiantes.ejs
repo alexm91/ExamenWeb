@@ -67,6 +67,7 @@
                     <th>Apellidos</th>
                     <th>Fecha de Nacimiento</th>
                     <th>Semestre Actual</th>
+                    <th>Graduado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -78,6 +79,7 @@
                     <td><%= estudiante.apellidos%></td>
                     <td><%= estudiante.fechaNacimiento%></td>
                     <td><%= estudiante.semestreActual%></td>
+                    <td><%= estudiante.graduado%></td>
                     <td>
                         <form action="/estudiante/eliminar/<%= estudiante.estudianteId %>" method="POST">
                             <button class="btn btn-outline-danger btn-block" type="submit"

@@ -34,6 +34,12 @@ export class EstudianteEntity {
   })
   semestreActual: number;
 
+  @Column({
+    name: 'Graduado',
+    type: 'boolean'
+  })
+  graduado: boolean
+
   @OneToMany(
     type => MateriaEntity,
     materia => materia.estudiantes

@@ -31,7 +31,7 @@ export class MateriaEntity {
 
   @Column({
     name: 'Activo',
-    type: 'tinyint'
+    type: 'boolean'
   })
   activo: boolean;
 
