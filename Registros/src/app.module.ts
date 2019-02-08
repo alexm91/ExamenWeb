@@ -5,11 +5,10 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import { EstudianteEntity } from './estudiante/estudiante.entity';
 import { MateriaEntity } from './materia/materia.entity';
 import { EventoEntity } from './evento/evento.entity';
-import { EventoMateriaEntity } from './evento-materia/evento-materia.entity';
 import { EstudianteModule } from './estudiante/estudiante.module';
 import { MateriaModule } from './materia/materia.module';
 import { EventoModule } from './evento/evento.module';
-import { EventoMateriaModule } from './evento-materia/evento-materia.module';
+
 
 @Module({
   imports: [
@@ -26,15 +25,13 @@ import { EventoMateriaModule } from './evento-materia/evento-materia.module';
         entities: [
           EstudianteEntity,
           MateriaEntity,
-          EventoEntity,
-          EventoMateriaEntity
+          EventoEntity
         ]
       }
     ),
     EstudianteModule,
     MateriaModule,
     EventoModule,
-    EventoMateriaModule
   ],
   controllers: [
     AppController

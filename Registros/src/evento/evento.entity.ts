@@ -1,5 +1,5 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
-import { EventoMateriaEntity } from '../evento-materia/evento-materia.entity';
+import { Column, JoinTable, Entity, Index, PrimaryGeneratedColumn, OneToMany, ManyToMany } from 'typeorm';
+import { MateriaEntity } from '../materia/materia.entity';
 
 @Entity('evento')
 export class EventoEntity {
@@ -7,7 +7,6 @@ export class EventoEntity {
   @PrimaryGeneratedColumn()
   eventoId: number;
 
-  @Index()
   @Column({
     name: 'Evento',
     type: 'varchar',
@@ -36,10 +35,18 @@ export class EventoEntity {
   })
   longitud: number;
 
-  @OneToMany(
-    type => EventoMateriaEntity,
-    eventoMateriaE => eventoMateriaE.evento,
-  )
-  eventos: EventoMateriaEntity[];
+  @ManyToMany(type => MateriaEntity)
+  @JoinTable({
+    name: "evento_materias",
+    joinColumn: {
+      name: "evento",
+      referencedColumnName: "eventoId"
+    },
+    inverseJoinColumn: {
+      name: "materia",
+      referencedColumnName: "materiaId"
+    }
+  })
+  materias:MateriaEntity[];
 
 }

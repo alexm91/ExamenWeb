@@ -1,6 +1,7 @@
 import { Controller, Get, HttpCode, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { EstudianteEntity } from './estudiante/estudiante.entity';
+import { MateriaEntity } from './materia/materia.entity';
 
 @Controller()
 export class AppController {
@@ -27,6 +28,7 @@ export interface Estudiante {
     fechaNacimiento: string;
     semestreActual: number;
     graduado: boolean;
+    materias?: MateriaEntity[];
 }
 
 export interface Materia {
@@ -37,19 +39,13 @@ export interface Materia {
     activo: boolean;
     fechaCreacion: string;
     numeroHorasPorSemana: number;
-    estudianteIdFK: EstudianteEntity;
+    estudiante: EstudianteEntity;
 }
 
 export interface Evento {
     eventoId?: number;
-    nombreEvento: number;
+    nombreEvento: string;
     fechaEvento: string;
     latitud: number;
     longitud: number;
-}
-
-export interface EventoMateria{
-    id: number;
-    eventoIdFK?: number;
-    materiaIdFK?: number;
 }

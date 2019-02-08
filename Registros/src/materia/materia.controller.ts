@@ -93,6 +93,9 @@ export class MateriaController {
     @Body() materia: Materia
   ) {
     const objetoValidacionMateria = new CreateMateriaDto();
+    objetoValidacionMateria.nombreMateria = materia.nombreMateria;
+    objetoValidacionMateria.codigo = materia.codigo;
+    objetoValidacionMateria.descripcion = materia.descripcion;
 
     const errores: ValidationError[] = await validate(objetoValidacionMateria);
 
@@ -142,4 +145,11 @@ export class MateriaController {
       '/materia/materias' +parametrosConsulta
     );
   }
+
+  @Get('listar')
+  async getRoles(
+  ) {
+    return await this._materiaService.buscarMateria();
+  }
+
 }

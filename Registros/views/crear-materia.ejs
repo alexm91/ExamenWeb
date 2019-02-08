@@ -64,7 +64,7 @@
                 <label for="fechaCreacion">Fecha de Creacion</label>
                 <input id="fechaCreacion"
                        name="fechaCreacion"
-                       type="text"
+                       type="date"
                        value="<%= estaCreando ? '' : materia.fechaCreacion%>"
                        required
                 >
@@ -84,7 +84,9 @@
                 <label for="estudiantes">Lista de Estudiantes</label>
                 <select class="form-control"
                         name="estudiante"
-                        id="estudiante">
+                        id="estudiante"
+                        required
+                >
                 </select>
 
             </div>
@@ -95,13 +97,20 @@
         <a href="/materia/materias">
             <button>Regresar</button>
         </a>
+
+
     </div>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
 
     <script>
       let selectEstudiantes = document.getElementById('estudiante')
-      const url = 'http://localhost:3000/estudiante/estudiantes';
+      const url = 'http://localhost:3000/estudiante/listar';
       $.get(
         url, (datos) => {
+          console.log(datos)
           const arregloEstudiantes = datos;
           matarHijos();
           llenarEstudiantes(arregloEstudiantes);
@@ -120,7 +129,7 @@
           )
       }
 
-      function matarHijos() { //AKA eliminarLasOpciones
+      function matarHijos() {
         while (selectEstudiantes.firstChild) {
           selectEstudiantes.removeChild(selectEstudiantes.firstChild);
         }

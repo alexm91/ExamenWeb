@@ -18,8 +18,7 @@ export class MateriaService {
   }
 
   crearMateria(materia: Materia) : Promise<MateriaEntity>{
-    const materiaEntity : MateriaEntity = this._materiaRepository
-      .create(materia);
+    const materiaEntity : MateriaEntity = this._materiaRepository.create(materia);
     return this._materiaRepository.save(materiaEntity);
   }
 

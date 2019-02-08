@@ -15,6 +15,52 @@
 
         <h1><%= estaCreando ? 'Crear': 'Actualizar'%> evento</h1>
         <p><%= estaCreando ? 'Cree': 'Actualice'%> un evento</p>
+
+        <form action="/evento/<%= estaCreando ? 'crear' : 'actualizar'%>-evento/<%= estaCreando ? '': evento.eventoId%>" method="post">
+            <div>
+                <label for="nombreEvento">Evento</label>
+                <input id="nombreEvento"
+                       name="nombreEvento"
+                       type="text"
+                       value="<%= estaCreando ? '' : evento.nombreEvento%>"
+                       required
+                >
+            </div>
+            <div>
+                <label for="fechaEvento">Fecha del Evento</label>
+                <input id="fechaEvento"
+                       name="fechaEvento"
+                       type="date"
+                       value="<%= estaCreando ? '' : evento.fechaEvento%>"
+                       required
+                >
+            </div>
+            <div>
+                <label for="latitud">Latitud</label>
+                <input id="latitud"
+                       name="latitud"
+                       type="number"
+                       value="<%= estaCreando ? '' : evento.latitud%>"
+                       required
+                >
+            </div>
+            <div>
+                <label for="longitud">Longitud</label>
+                <input id="longitud"
+                       name="longitud"
+                       type="number"
+                       value="<%= estaCreando ? '' : evento.longitud%>"
+                       required
+                >
+            </div>
+            <button type="submit"><%= estaCreando ? 'Crear': 'Actualizar'%> evento</button>
+        </form>
+        <a href="/evento/eventos">
+            <button>Regresar</button>
+        </a>
     </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

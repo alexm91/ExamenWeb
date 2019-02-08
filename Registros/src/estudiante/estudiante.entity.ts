@@ -7,7 +7,6 @@ export class EstudianteEntity {
   @PrimaryGeneratedColumn()
   estudianteId: number;
 
-  @Index()
   @Column({
     name: 'Nombres',
     type: 'varchar',
@@ -42,7 +41,7 @@ export class EstudianteEntity {
 
   @OneToMany(
     type => MateriaEntity,
-    materia => materia.estudiantes
+    materia => materia.estudiante
   )
   materias: MateriaEntity[];
 }

@@ -11,27 +11,68 @@
 </head>
 <body>
     <div class="container">
-        <h1>Examen Web</h1>
+        <h1>Eventos</h1>
+        <form action="/evento/eventos" method="get">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label for="busqueda">Busqueda de eventos</label>
+                        <input id="busqueda"
+                               type="text"
+                               class="form-control"
+                               name="busqueda">
+                    </div>
 
-        <div>
-            <a href="/materia/materias">
-                <button>Materias</button>
-            </a>
-        </div>
-        <br>
-        <div>
-            <a href="/estudiante/estudiantes">
-                <button>Estudiantes</button>
-            </a>
-        </div>
-        <div>
-            <a href="/evento/eventos">
-                <button>Eventos</button>
-            </a>
-        </div>
+                </div>
+                <div class="col-sm-3">
+                    <button class=" btn btn-outline-success btn-block" style="margin-top: 31px;">
+                        Buscar
+                    </button>
 
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-white" style="background-color: rgba(0, 0, 0, 0.7);">
+                <table class="table table-hover animated fadeInUp">
+                    <caption>Lista de eventos</caption>
+                    <!-- tr -> table row -->
+                    <thead>
+                    <tr>
+                        <!-- th -> table header -->
+                        <th width="30%">Nombre</th>
+                        <th width="50%">Fecha</th>
+                        <th width="20%">Acciones</th>
+
+                    </tr>
+                    </thead>
+                    <!-- tr -> table row -->
+                    <tbody>
+                    <% arregloEventos.forEach((evento)=>{ %>
+                        <tr>
+                            <!-- td -> table detail -->
+                            <td><%= evento.nombre %></td>
+                            <td><%= evento.fecha %></td>
+                            <td><a href="/evento/ver/<%= evento.eventoId %>">
+                                    <button class="btn btn-info btn-block btn-b"
+                                            type="submit">Ver
+                                    </button>
+                                </a>
+                            </td>
+
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-2"></div>
 
 
     </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

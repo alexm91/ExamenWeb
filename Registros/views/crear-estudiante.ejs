@@ -39,7 +39,8 @@
                 <label for="fechaNacimiento">Fecha de Nacimiento</label>
                 <input id="fechaNacimiento"
                        name="fechaNacimiento"
-                       type="string"
+                       type="date"
+                       max="2019-02-08"
                        value="<%= estaCreando ? '' : estudiante.fechaNacimiento%>"
                 >
             </div>

@@ -90,7 +90,8 @@ export class EventoController {
     @Res() response,
     @Body() evento: Evento
   ) {
-    const objetoValidacion = new CreateEventoDto()
+    const objetoValidacion = new CreateEventoDto();
+    objetoValidacion.nombreEvento = evento.nombreEvento;
 
     const errores: ValidationError[] = await validate(
       objetoValidacion);
@@ -135,10 +136,25 @@ export class EventoController {
     evento.eventoId = +eventoId;
     await this._eventoService.actualizarEvento(evento);
 
-    const parametrosConsulta = `?accion=actualizar&estudiante=${evento.nombreEvento}`
+    const parametrosConsulta = `?accion=actualizar&evento=${evento.nombreEvento}`
 
     response.redirect(
-      'evento/eventos' + parametrosConsulta
+      '/evento/eventos' + parametrosConsulta
     );
+  }
+
+  @Get('ver/:idEvento')
+  async verEvento(
+    @Param('idEvento')idEvento: string,
+    @Res() response,
+  ) {
+    const eventoEncontrado = await this._eventoService
+      .buscarPorIdEvento(+idEvento);
+    response.render(
+      'evento_ver',
+      {
+        titulo:"Ver evento",
+        evento:eventoEncontrado,
+      })
   }
 }
