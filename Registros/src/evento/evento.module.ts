@@ -4,6 +4,9 @@ import {EventoService} from './evento.service';
 
 import {TypeOrmModule} from '@nestjs/typeorm';
 import { EventoController } from './evento.controller';
+import { MateriaEntity } from '../materia/materia.entity';
+import { MateriaService } from '../materia/materia.service';
+import { MateriaModule } from '../materia/materia.module';
 
 @Module(
   {
@@ -11,14 +14,19 @@ import { EventoController } from './evento.controller';
       TypeOrmModule
         .forFeature(
           [
-            EventoEntity
+            EventoEntity,
+            MateriaEntity
           ])
+    ],
+    modules:[
+      MateriaModule
     ],
     controllers: [
       EventoController
     ],
     providers: [
-      EventoService
+      EventoService,
+      MateriaService
     ],
     exports: [
       EventoService

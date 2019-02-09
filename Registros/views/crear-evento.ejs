@@ -53,6 +53,16 @@
                        required
                 >
             </div>
+            <div class="form-group">
+                <label for="materias">Lista de Materias</label>
+                <select class="form-control"
+                        name="materia"
+                        id="materia"
+                        required
+                >
+                </select>
+
+            </div>
             <button type="submit"><%= estaCreando ? 'Crear': 'Actualizar'%> evento</button>
         </form>
         <a href="/evento/eventos">
@@ -62,5 +72,36 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/popper.js"></script>
     <script src="/bootstrap/js/bootstrap.js"></script>
+
+    <script>
+      let selectMaterias = document.getElementById('materia')
+      const url = 'http://localhost:3000/materia/listar';
+      $.get(
+        url, (datos) => {
+          console.log(datos)
+          const arregloMaterias = datos;
+          matarHijos();
+          llenarMaterias(arregloMaterias);
+        }
+      )
+
+      function llenarMaterias(arregloMaterias) {
+        arregloMaterias
+          .forEach( (materia) => {
+              const nuevaOption = document.createElement('option');
+              nuevaOption.value = materia.materiaId;
+              nuevaOption.innerText = materia.nombreMateria;
+              nuevaOption.localName = 'materia_nombre'
+              selectEstudiantes.appendChild(nuevaOption);
+            }
+          )
+      }
+
+      function matarHijos() {
+        while (selectMaterias.firstChild) {
+          selectMaterias.removeChild(selectMaterias.firstChild);
+        }
+      }
+    </script>
 </body>
 </html>

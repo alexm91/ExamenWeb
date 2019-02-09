@@ -5,11 +5,14 @@ import {EventoService} from './evento.service';
 import {FindManyOptions, Like} from 'typeorm';
 import { validate, ValidationError } from 'class-validator';
 import {CreateEventoDto} from './dto/create-evento.dto';
+import { MateriaService } from '../materia/materia.service';
+import { MateriaEntity } from '../materia/materia.entity';
 
 @Controller('evento')
 export class EventoController {
   constructor(
-    private readonly _eventoService: EventoService
+    private readonly _eventoService: EventoService,
+    private readonly _materiaService: MateriaService
   ){}
 
   @Get('eventos')
@@ -44,7 +47,7 @@ export class EventoController {
       const consulta: FindManyOptions<EventoEntity> = {
         where: [
           {
-            nombreE: Like(`%${busqueda}`)
+            nombreEvento: Like(`%${busqueda}`)
           }
         ]
       };
@@ -143,18 +146,20 @@ export class EventoController {
     );
   }
 
-  @Get('ver/:idEvento')
+  @Get('ver/:eventoId')
   async verEvento(
-    @Param('idEvento')idEvento: string,
+    @Param('eventoId')eventoId: string,
     @Res() response,
   ) {
-    const eventoEncontrado = await this._eventoService
-      .buscarPorIdEvento(+idEvento);
+    const eventoEncontrado = await this._eventoService.buscarPorIdEvento(+eventoId);
+    const materiaEncontrada = await this._materiaService.buscarPorIdMateria(+eventoId)
+
     response.render(
       'evento_ver',
       {
         titulo:"Ver evento",
         evento:eventoEncontrado,
+        materia: materiaEncontrada
       })
   }
 }

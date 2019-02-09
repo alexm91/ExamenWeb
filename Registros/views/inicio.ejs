@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Eventos</h1>
+        <h1>Proximos Eventos</h1>
         <form action="/evento/eventos" method="get">
             <div class="row">
                 <div class="col-sm-9">
@@ -34,9 +34,8 @@
         </form>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 text-white" style="background-color: rgba(0, 0, 0, 0.7);">
+            <div class="col-md-8">
                 <table class="table table-hover animated fadeInUp">
-                    <caption>Lista de eventos</caption>
                     <!-- tr -> table row -->
                     <thead>
                     <tr>
@@ -52,8 +51,8 @@
                     <% arregloEventos.forEach((evento)=>{ %>
                         <tr>
                             <!-- td -> table detail -->
-                            <td><%= evento.nombre %></td>
-                            <td><%= evento.fecha %></td>
+                            <td><%= evento.nombreEvento %></td>
+                            <td><%= evento.fechaEvento %></td>
                             <td><a href="/evento/ver/<%= evento.eventoId %>">
                                     <button class="btn btn-info btn-block btn-b"
                                             type="submit">Ver
@@ -71,8 +70,10 @@
 
 
     </div>
+    </div>
     <script src="/js/jquery.js"></script>
     <script src="/js/popper.js"></script>
     <script src="/bootstrap/js/bootstrap.js"></script>
+
 </body>
 </html>
